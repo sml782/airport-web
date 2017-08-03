@@ -1,0 +1,769 @@
+//反向动画
+animation-direction{
+    animation-direction:alternate;
+}
+
+.index-bg{
+    background-image: url("../images/index_bg.jpg");
+    display: flex;
+    height: 100%;
+    background-repeat:no-repeat; 
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+}
+.index-animation{
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin-top: .5rem;
+    padding: 0 .5rem 0;
+}
+.index-user{
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    background-image: url("../images/icon_index_user.png");
+    background-repeat:no-repeat; 
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+}
+.index-weather{
+    position: absolute;
+    top: 0;
+    right: 0.5rem;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    width: 2.7rem;
+    height: .5rem;
+    color: #666;
+    font-size: .35rem;
+    .index-weather-icon{
+        width: .4rem;
+        height: .4rem;
+    }
+    .index-weather-con{
+        
+    }
+}
+//机场信息
+.index-airport{
+    font-size: .35rem;
+    width: 100%;
+    position: relative;
+    top: 2rem;
+    .airport-welcome{
+        color: #999;
+        display: inline-block;
+        margin-bottom: .3rem;
+        height: .4rem;
+    }
+    .check-airport{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: .5rem;
+        .airport-name{
+            font-size: .5rem;
+        }
+        .airport-button{
+            width: 1.5rem;
+            height: .5rem;
+            line-height: .5rem;
+        }
+    }
+    .airport-tips{
+        font-size: .24rem;
+        line-height: .3rem;
+        background: #444;
+        display: inline-block;
+        color: #E2C064;
+        padding: .1rem .12rem;
+        border-radius: .1rem;
+        top: 1.5rem;
+    }
+}
+//主菜单
+.index-menu{
+    position: relative;
+    top: 4rem;
+    width: 100%;
+}
+.index-arrow{
+    display: inline-block;
+    position: relative;
+    left: 48%;
+    transform: rotate(180deg);
+    margin-bottom: .2rem;
+    img{
+        display: block;
+        width: .5rem;
+        height: .25rem;
+    }
+}
+.index-menu-hasAir{
+    top: 3.2rem;
+}
+//航班
+.add-airport{
+    width: 100%;
+    height: auto;
+    margin-bottom: .3rem;
+    .index-add-button{
+        background-color: #3ABDB5;
+        border:1px solid #3ABDB5;
+        display: none;
+    }
+    .airport-line{
+        width: 100%;
+        background: rgba(0,0,0,.7);
+        color:#fbfbfb;
+        padding: .4rem;
+        position: relative;
+        //display: none;
+        .alrline-delete-btn{
+            display: inline-block;
+            position: absolute;
+            top: -.5rem;
+            right: 0rem;
+            .am-icon{
+                border: 1px solid rgb(102, 102, 102);
+                border-radius: .3rem;
+                color: #222;
+                width: .3rem;
+                height: .3rem;
+            }
+            .del-prop{
+                position: absolute;
+                width: 3rem;
+                background: #f2f2f2;
+                top: .5rem;
+                right: -.1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-size: .3rem;
+                text-align: center;
+                border-radius: .15rem;
+                z-index: 9999;
+                display: none;
+                &::after{
+                    content: ' ';
+                    display: block;
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    border-bottom: 20px solid #f2f2f2;
+                    border-top-: none;
+                    position: absolute;
+                    top: -.15rem;
+                    right: .18rem;
+                }
+                .del-b{
+                    width: 2rem;
+                    height: .6rem;
+                    line-height: .58rem;
+                    border: 1px solid #ccc;
+                    border-radius: .3rem;
+                }
+                .del-airline{
+                    background-color: #FF3D53;
+                    color:#fff;
+                    margin-top: .2rem;
+                    margin-bottom: .1rem;
+                }
+                .cancle-airline{
+                    color:#c2c2c2;
+                    margin-top: .1rem;
+                    margin-bottom: .2rem;
+                }
+            }
+        }
+        .airline-no-date{
+            width: 100%;
+            height: .55rem;
+            padding-bottom: .2rem;
+            border-bottom: 1px solid #999;
+            font-size: .3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: .2rem;
+            .airline-no{
+
+            }
+            .airline-date{
+                font-size: .2rem;
+                color: #a4a4a4;
+            }
+        }
+        .airline-time{
+            width: 100%;
+            height: .6rem;
+            line-height: .6rem;
+            font-size: .5rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .airline-start-time {
+                float: left;
+            }
+            .airline-end-time {
+                float: right;
+            }
+            .airline-no{
+                font-size: .3rem;
+            }
+            .airline-plan{
+                display: inline-block;
+                position: absolute;
+                top: 1.2rem;
+                left: 2.25rem;
+                width: 2rem;
+                padding: .1rem .15rem;
+                line-height: .3rem;
+                font-size: .3rem;
+                background-color: #3ABDB5;
+            }
+        }
+        .airline-place{
+            margin-top:.2rem;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .place{
+                .city{
+                    display: block;
+                    font-size: .3rem;
+                    margin-bottom: .05rem;
+                }
+                .airport{
+                    font-size: .25rem;
+                    color: #999;
+                }
+            }
+            .airline-start-place{
+                text-align: left;
+            }
+            .airline-end-place{
+                text-align: right;
+            }
+            img{
+                width: .35rem;
+                height: .35rem;
+            }
+        }
+    }
+}
+
+//菜单
+.menu-list{
+    position: absolute;
+    width: 100%;
+    height: 5.63rem;
+    top: 10rem;
+    background: rgba(0,0,0,.7);
+    color: #fff;
+    .am-grid{
+        .am-flexbox{
+            background: inherit;
+        }
+        .am-flexbox .am-flexbox-item{
+            &::before{
+                content: ' ';
+                display: block;
+                padding-bottom: 2.2rem;
+            }
+            .am-grid-item-content{
+                & > div{
+                    
+                }
+            }   
+        }
+    }
+    .more-menu{
+        width: 100%;
+        padding:.2rem .25rem;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        font-size: .28rem;
+        line-height: .55rem;
+        .menu-btn{
+            display: inline-block;
+            background: #525657;
+            border:1px solid #666;
+            width: 40%;
+            padding: .06rem .3rem;
+            color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .airport-service{
+            span{
+                margin-right: .1rem;
+            }
+        }
+    }
+}
+.menu-list-hasAir{
+    top: 11rem;
+}
+
+//主页动画
+//天气
+@keyframes weather {
+    from {
+        top: 0;
+        right: 0.5rem;
+    }
+    to {
+        top: 1.5rem;
+        right: 2rem;
+    }
+}
+@keyframes weatherIcon {
+    from {
+        top: 0;
+        left: 0;
+        width: .4rem;
+        height: .4rem;
+    }
+    to {
+        top: -.5rem;
+        left: .8rem;
+        width: .5rem;
+        height: .5rem;
+    }
+}
+.weather-ani{
+    animation-name: weather;
+    .weather-icon{
+        position: absolute;
+        animation-name: weatherIcon;
+    }
+}
+//机场
+@keyframes airport {
+    from {
+        top: 2rem;
+        left: .5rem;
+    }
+    to {
+        top: -.8rem;
+        left: 1.8rem;
+    }
+}
+@keyframes airportWel {
+    from {
+        height: .4rem;
+        opacity: 1;
+    }
+    50%{
+        height: .2rem;
+        opacity: 0;
+    }
+    to {
+        height: 0rem;
+        opacity: 0;
+    }
+}
+@keyframes airportName {
+    from {
+        font-size: .5rem;
+    }
+    to {
+        font-size: .4rem;
+    }
+}
+@keyframes airportTips {
+    from {
+        top: 1.5rem;
+        left: 0;
+    }
+    to {
+        top: 2.5rem;
+        left: .85rem;
+    }
+}
+//箭头
+@keyframes arrow {
+    from {
+        opacity: 1;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.airport-ani{
+    animation-name: airport;
+    .airport-wel-ani{
+        animation-name: airportWel;
+    }
+    .airport-name-ani{
+        animation-name: airportName;
+    }
+    .airport-tips-ani{
+        position: absolute;
+        animation-name: airportTips;
+    }
+}
+.arrow-ani{
+    animation-name: arrow;
+}
+.arrow-ani-1{
+    animation-delay:0;
+}
+.arrow-ani-2{
+    animation-delay:.3s;
+}
+.arrow-ani-3{
+    animation-delay:.6s;
+}
+//航班日期
+@keyframes airlineDate {
+    from {
+        height: .55rem;
+    }
+    50%{
+        height: 0;
+    }
+    to {
+        height: 0;
+    }
+}
+.airline-date-ani{
+    animation-name: airlineDate;
+}
+//航班时间
+@keyframes airlineTime {
+    from {
+        font-size: .5rem;
+    }
+    to {
+        font-size: .4rem;
+    }
+}
+.airline-time-ani{
+    animation-name: airlineTime;
+}
+@keyframes airlineTimePlan {
+    from {
+        top: 1.2rem;
+    }
+    to {
+        top: 1.1rem;
+    }
+}
+.airline-plan-ani{
+    animation-name: airlineTimePlan;
+}
+@keyframes airlinePlaceArea {
+    from {
+        font-size: .3rem;
+    }
+    to {
+        font-size: .25rem;
+    }
+}
+.airline-area-ani{
+    animation-name: airlinePlaceArea;
+}
+@keyframes airlineAirport {
+    from {
+        font-size: .25rem;
+    }
+    50%{
+        font-size: 0;
+    }
+    to {
+        font-size: 0;
+    }
+}
+.airline-airport-ani{
+    animation-name: airlineAirport;
+}
+
+//菜单
+@keyframes menu {
+    from {
+        top: 4rem;
+    }
+    to {
+        top: 2rem;
+    }
+}
+.menu-ani{
+    animation-name: menu;
+}
+//菜单有航班
+@keyframes menuHasAir {
+    from {
+        top: 3.2rem;
+    }
+    to {
+        top: 1.5rem;
+    }
+}
+.menu-hasAir-ani{
+    animation-name: menuHasAir;
+}
+//箭头
+@keyframes arrowBig {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+.arrow-big-ani{
+    animation-name: arrowBig;
+}
+//主菜单
+@keyframes menuList {
+    from {
+        top: 10rem;
+    }
+    to {
+        top: 7.7rem;
+    }
+}
+.menu-list-ani{
+    animation-name: menuList;
+}
+//主菜单
+@keyframes menuListHasAir {
+    from {
+        top: 11rem;
+    }
+    to {
+        top: 7.7rem;
+    }
+}
+.menu-list-hasAir-ani{
+    animation-name: menuListHasAir;
+}
+
+
+//反向动画
+//天气
+@keyframes weatherReverse {
+    from {
+        top: 1.5rem;
+        right: 2rem;
+    }
+    to {
+        top: 0;
+        right: 0.5rem;
+    }
+}
+@keyframes weatherIconReverse {
+    from {
+        top: -.5rem;
+        left: .8rem;
+        width: .5rem;
+        height: .5rem;
+    }
+    to {
+        top: 0;
+        left: 0;
+        width: .4rem;
+        height: .4rem;
+    }
+}
+.weather-reverse-ani{
+    animation-name: weatherReverse;
+    .weather-icon{
+        position: static;
+        animation-name: weatherIconReverse;
+    }
+}
+//机场
+@keyframes airportReverse {
+    from {
+        top: -.8rem;
+        left: 1.8rem;
+    }   
+    to {
+        top: 2rem;
+        left: .5rem;
+    }
+}
+@keyframes airportWelReverse {
+    from {
+        height: 0rem;
+        opacity: 0;
+    }
+    50%{
+        height: .2rem;
+        opacity: 0;
+    }
+    to {
+        height: .4rem;
+        opacity: 1;
+    }
+}
+@keyframes airportNameReverse {
+    from {
+        font-size: .4rem;
+    }
+    to {
+        font-size: .5rem;
+    }
+}
+@keyframes airportTipsReverse {
+    from {
+        top: 2.5rem;
+        left: .85rem;
+    }
+    to {
+        top: 1.5rem;
+        left: 0;
+    }
+}
+.airport-reverse-ani{
+    animation-name: airportReverse;
+    .airport-wel-reverse-ani{
+        animation-name: airportWelReverse;
+    }
+    .airport-name-reverse-ani{
+        animation-name: airportNameReverse;
+    }
+    .airport-tips-reverse-ani{
+        position: static;
+        animation-name: airportTipsReverse;
+    }
+}
+//航班日期
+@keyframes airlineDateReverse {
+    from {
+        height: 0;
+    }
+    50%{
+        height: 0;
+    }
+    to {
+        height: .55rem;
+    }
+}
+.airline-date-reverse-ani{
+    animation-name: airlineDateReverse;
+}
+//航班时间
+@keyframes airlineTimeReverse {
+    from {
+        font-size: .4rem;
+    }
+    to {
+        font-size: .5rem;
+    }
+}
+.airline-time-reverse-ani{
+    animation-name: airlineTimeReverse;
+}
+@keyframes airlineTimePlanReverse {
+    from {
+        top: 1.1rem;
+    }
+    to {
+        top: 1.2rem;
+    }
+}
+.airline-plan-reverse-ani{
+    animation-name: airlineTimePlanReverse;
+}
+@keyframes airlinePlaceAreaReverse {
+    from {
+        font-size: .25rem;
+    }
+    to {
+        font-size: .3rem;
+    }
+}
+.airline-area-reverse-ani{
+    animation-name: airlinePlaceArea;
+}
+@keyframes airlineAirportReverse {
+    from {
+        font-size: 0;
+    }
+    50%{
+        font-size: 0;
+    }
+    to {
+        font-size: .25rem;
+    }
+}
+.airline-airport-reverse-ani{
+    animation-name: airlineAirportReverse;
+}
+
+//菜单
+@keyframes menuReverse {
+    from {
+        top: 2rem;
+    }
+    to {
+        top: 4rem;
+    }
+}
+.menu-reverse-ani{
+    animation-name: menuReverse;
+}
+//菜单有航班
+@keyframes menuHasAirReverse {
+    from {
+        top: 1.5rem;
+    }
+    to {
+        top: 3.2rem;
+    }
+}
+.menu-hasAir-reverse-ani{
+    animation-name: menuHasAirReverse;
+}
+//箭头
+@keyframes arrowBigReverse {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+.arrow-big-reverse-ani{
+    animation-name: arrowBigReverse;
+}
+
+//主菜单
+@keyframes menuListReverse {
+    from {
+        top: 7.7rem;
+    }
+    to {
+        top: 10rem;
+    }
+}
+.menu-list-reverse-ani{
+    animation-name: menuListReverse;
+}
+//主菜单
+@keyframes menuListHasAirReverse {
+    from {
+        top: 7.7rem;
+    }
+    to {
+        top: 11rem;
+    }
+}
+.menu-list-hasAir-reverse-ani{
+    animation-name: menuListHasAirReverse;
+}
