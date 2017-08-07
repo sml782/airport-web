@@ -42,3 +42,206 @@
     height:0;
     clear:both;
 }
+//选择机场
+#selectAirport{
+    .am-search-input{
+        border-radius:0.7rem;
+    }
+    .search-bar{
+        .am-search{
+            background-color:transparent;
+        }
+    }
+    .region-list{
+        .am-list-body{
+            height:1.3rem;
+        }
+    }
+    .nav{
+        border-radius: 0.1rem;
+        color:#00aca0;
+        border:1px solid #00aca0;
+        margin:0.3rem;
+        height:0.7rem;
+        cursor: pointer;
+        .sub-nav{
+            line-height: 0.65rem;
+            height:0.7rem;
+            width:50%;
+            text-align: center;
+        }
+        &:after{
+            content:'';
+            height:0;
+            clear:both;
+        }
+        .active{
+            background: #00aca0;
+            color:#fff;
+        }
+    }
+    .hot-airport{
+        margin-top:0.16rem;
+        background: #fff;
+    }
+    .airports{
+        display: flex;
+        flex-wrap:wrap;
+        justify-content:center ;
+        align-content:stretch;
+        font-size:0.3rem;
+        padding-bottom: 0.3rem;
+        .item-flex{
+            margin-right:0.3rem;
+            margin-top:0.3rem;
+            width:40%;
+            height:0.7rem;
+            line-height: 0.5rem;
+            padding:0.1rem 0.2rem;
+            border:1px solid #ddd;
+            border-radius:0.5rem;
+        }
+    }
+}
+
+.bar{
+    display:inline-block;
+    background:#00aca0;
+    height:0.4rem;
+    width:0.1rem;
+}
+.bar-txt{
+    display:inline-block;
+    margin-left:0.2rem;
+    vertical-align:top;
+}
+
+//拼音检索机场列表
+.airport-list{
+    .city {
+        /*display: block;
+        background-color: #f5f5f5;
+        min-height:300px;*/
+    }
+    .city .city-wrapper {
+        /*position: absolute;
+        top: 46%;
+        bottom: 0;*/
+        width: 100%;
+        height: 667px;
+    }
+    /*.city .city-wrapper .cities .title {
+        height: 28px;
+        padding-left: 16px;
+        line-height: 28px;
+        font-size: 1.2rem;
+        color: #878787;
+    }
+    .city .city-wrapper .cities .item {
+        height: 44px;
+        padding: 0 16px;
+        line-height: 44px;
+        font-size: 1.6rem;
+    }
+    .city .city-wrapper .cities .item .name {
+        display: block;
+        position: relative;
+    }
+    .city .city-wrapper .cities .item .name:before,
+    .city .city-wrapper .cities .item .name:after {
+        display: block;
+        position: absolute;
+        border-top: 1px solid #e5e5e5;
+        left: 0;
+        width: 100%;
+        content: ' ';
+    }
+    .city .city-wrapper .cities .item .name:before {
+        display: none;
+        top: 0;
+    }
+    .city .city-wrapper .cities .item .name:after {
+        display: block;
+        bottom: 0;
+    }
+    .city .city-wrapper .cities .item:active {
+        background-color: #f0f0f0;
+    }
+    .city .city-wrapper .cities .item:last-child .name:after {
+        display: none;
+    }
+    .city .city-wrapper .shortcut {
+        position: absolute;
+        z-index: 30;
+        width: 40px;
+        right: 0;
+    }
+    .city .city-wrapper .shortcut .item {
+        height: 12px;
+        padding-top: 4px;
+        padding-left: 24px;
+        text-align: center;
+        font-size: 1.2rem;
+        color: #fa8919;
+    }
+    @media only screen and (max-height: 600px) {
+        .city .city-wrapper .shortcut .item {
+            padding-top: 3px;
+        }
+    /*}
+        color: #fa8919;
+    */
+    .city{
+        position: relative;
+        .cities {
+            min-height:30%;
+            .item{
+                display:block;
+                width:100%;
+                text-align: left;
+                height:1rem; 
+                line-height:1rem;
+                margin-top:0;
+                float:none;
+            }
+            .title{
+                height:0.5rem;
+                line-height: 0.5rem;
+                padding-left: 0.3rem;
+            }
+            ul{
+                background: #fff;
+                li{
+                    list-style: none;
+                    width:100%;
+                    border-bottom: 1px solid #ddd;
+                }
+            }
+        }
+        .shortcut {
+            position: fixed;
+            /*top:50%;*/
+            z-index: 30;
+            width: 40px;
+            right: 0.3rem;
+            li{
+                list-style: none;
+                border-bottom:none;
+            }
+            .item {
+                height: 0.05rem;
+                text-align: left;
+                font-size:0.32rem;
+                color: #fa8919;
+                float:none;
+                margin-top:0.4rem;
+            }
+        }
+        @media only screen and (max-height: 600px) {
+            .city .city-wrapper .shortcut .item {
+                /*padding-top: 3px;*/
+            }
+        }
+    }
+    
+}

@@ -19,51 +19,52 @@ export default class Index extends React.Component {
            StrollList:null,
         }
     }
-   componentDidMount() {
-     this.props.changeTitle('航会玩');
-     this.getCarou()
-     this.getList()
-     this.getPalyList()
-     this.getStrollList()
-   }
-   getCarou = ()=>{
-       const _this = this
-        get(serverUrl+'airport-article/getArticleList',{type:'3',airportCode:'HGH'}).then(
-            result => {
-                _this.setState({
-                    carou:result.data
-                })
-            }
-        )
+    componentDidMount() {
+        this.props.changeTitle('航会玩');
+        this.getCarou()
+        this.getList()
+        this.getPalyList()
+        this.getStrollList()
+    }
+    getCarou = ()=>{
+        const _this = this
+            get(serverUrl+'airport-article/getArticleList',{type:'3',airportCode:'HGH'}).then(
+                result => {
+                    _this.setState({
+                        carou:result.data
+                    })
+                }
+            )
 
-   }
-   getList=()=>{
-     const _this = this
-      get(serverUrl+'airport-article/getArticleList',{type:'1',airportCode:'HGH'}).then(
-            result => {
-                _this.setState({
-                    list:result.data.rows
-                })
-            }
-        )
-   }
+    }
+    getList=()=>{
+        const _this = this
+        get(serverUrl+'airport-article/getArticleList',{type:'1',airportCode:'HGH'}).then(
+                result => {
+                    _this.setState({
+                        list:result.data.rows
+                    })
+                }
+            )
+    }
 
-   getPalyList=()=>{
-     const _this = this
-      get(serverUrl+'airport-article/getArticleList',{type:'2',airportCode:'HGH'}).then(
-            result => {
-                _this.setState({
-                    playList:result.data.rows
-                })
-            }
-        )
-   }
+    getPalyList=()=>{
+        const _this = this
+        get(serverUrl+'airport-article/getArticleList',{type:'2',airportCode:'HGH'}).then(
+                result => {
+                    _this.setState({
+                        playList:result.data.rows
+                    })
+                }
+            )
+    }
     getStrollList=()=>{
-     const _this = this
-      get(serverUrl1+'airport-product/getFlashForWeChat',{airportCode:'HGH'}).then(
+        const _this = this
+        get(serverUrl1+'airport-product/getFlashForWeChat',{airportCode:'PVG'}).then(
             result => {
+                console.log(result.data.rows)
                 _this.setState({
-                    StrollList:result.data.rows
+                    StrollList:result.data.rows,
                 })
             }
         )
@@ -73,7 +74,7 @@ export default class Index extends React.Component {
     }
 
     intoMore =(v,t)=>{
-        console.log(t)
+        hashHistory.push(`productDetail/${v.id}`)
     }
   render() {
     let opt = {
@@ -92,6 +93,27 @@ export default class Index extends React.Component {
             // })
         }
     }
+    let opt1 = {
+        distance: 240, // 每次移动的距离，卡片的真实宽度
+        currentPoint: 0,// 初始位置，默认从0即第一个元素开始
+        swTouchend: (ev) => {
+            let data = {
+                moved: ev.moved,
+                originalPoint: ev.originalPoint,
+                newPoint: ev.newPoint,
+                cancelled: ev.cancelled
+            }
+            console.log(ev);
+            // this.setState({
+            //     list: ev.newPoint
+            // })
+        }
+    }
+    let opt2 = {
+        distance: 240, // 每次移动的距离，卡片的真实宽度
+        currentPoint: 0,// 初始位置，默认从0即第一个元素开始
+        cancelable:true
+    }
     const divItem = this.state.list==null?<div></div>:this.state.list.map((v,index)=>{
         return <div className='item' onClick={this.clickItem.bind(this,v)}><img src={`${v.imgUrl}`}/><span>{v.title}</span></div>
         
@@ -100,6 +122,11 @@ export default class Index extends React.Component {
     const playDivItem =  this.state.playList==null?<div></div>:this.state.playList.map((v,index)=>{
         return <div className='item' onClick={this.clickItem.bind(this,v)}><img src={`${v.imgUrl}`}/><span>{v.title}</span></div>
     })
+
+    const StrollList =  this.state.StrollList==null?<div></div>:this.state.StrollList.map((v,index)=>{
+        return <div className='item' onClick={this.intoMore.bind(this,v)}><img src={`${v.imgUrl}`}/><span>{v.shopName}</span></div>
+    })
+
     return (
       <div className="body">
         <div style={{height:400}}>
@@ -124,7 +151,7 @@ export default class Index extends React.Component {
         </div>
         <div className="viewport" style={{display:this.state.playList==null?'none':''}}>
             <div className="flipsnap">
-                <ReactSwipes className="card-slide" options={opt}>
+                <ReactSwipes className="card-slide" options={opt1}>
                      {playDivItem}
                 </ReactSwipes>
             </div>
@@ -135,9 +162,9 @@ export default class Index extends React.Component {
             <span className='title-right' onClick={()=>{hashHistory.push('strollAround')}}>查看更多<img src={require('../../images/next.png')}/></span>
         </div>
         <div className="viewport">
-            <div className="flipsnap">
-                <ReactSwipes className="card-slide" options={opt}>
-                     {divItem}
+            <div className="flipsnap1">
+                <ReactSwipes className="card-slide" options={opt2}>
+                     {StrollList}
                 </ReactSwipes>
             </div>
         </div>

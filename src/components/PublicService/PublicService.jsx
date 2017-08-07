@@ -55,15 +55,20 @@ class PublicService extends Component {
         this.goService = this.goService.bind(this);
     }
     componentDidMount() {
-        this.props.changeTitle('服务大厅');
-        this.props.changeLeft('←');
-        this.props.changeRight('首页');
+        const _this = this;
+        //this.props.changeTitle('施工围观围观');
+        //this.props.changeLeft('又',()=>{});
+        //this.props.changeRight('首页',()=>hashHistory.push('/index'));
+
+        // setTimeout(()=>{
+        //     _this.props.changeTitle('服务大厅');
+        // },5000)
+
         this.getService();
     }
     
     getService () {
-        get(`${serverUrl2}public-service/getSerListForWeChat`,{airportCode:'INC'}).then(data=>{
-            console.log(data);
+        get(`${serverUrl2}public-service/getSerListForWeChat`,{airportCode:'LJG'}).then(data=>{
             this.setState({
                 serviceList: data.data
             })

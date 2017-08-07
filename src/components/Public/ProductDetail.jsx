@@ -3,17 +3,21 @@ import React from 'react';
 import {ListView, SwipeAction, Button } from 'antd-mobile';
 import $ from 'jquery'
 import moment from 'moment'
+import { hashHistory } from 'react-router';
 import {Fetcher} from '../../utils/fetch'
 import {serverUrl,serverUrl1,imgUrl} from '../../utils/utils'
+import ProductComment from './ProductComment'
 
 const {get, post} = Fetcher
 export default class ListItem extends React.Component {
     state = {
         data: null,
+        comment:null
     }
     componentDidMount() {
-        console.log(this.props.params.id)
         this.getDetail()
+        this.getComent()
+        this.props.changeTitle('餐厅');
     }
     componentWillReceiveProps(nextProps) {
         this.setState({data: nextProps == null ?[]:nextProps.data});
@@ -22,12 +26,25 @@ export default class ListItem extends React.Component {
         const _this = this
         get(serverUrl1+'airport-product/getFlashDetailForWeChat',{shopId:_this.props.params.id}).then(
             result => {
-                console.log(result)
                 _this.setState({
                     data:result.data,
                 })
             }
         )
+    }
+    getComent=()=>{
+        const _this = this
+        get(serverUrl1+'airport-article/getCommentList',{rootId:_this.props.params.id,type:2}).then(
+            result => {
+                _this.setState({
+                    comment:result.data,
+                    ListLength:result.data.total
+                })
+            }
+        )
+    }
+    intoBuy=()=>{
+        hashHistory.push(`productBuy/${this.state.data.id}`)
     }
     createMarkup=()=>{
         return {__html:  this.state.data==null?'':this.state.data.shopDescription};
@@ -38,7 +55,7 @@ export default class ListItem extends React.Component {
             return (<div className='ProductDetail-pay'> 
                   <img className='ProductDetail-bottom-img' src={`${imgUrl}${v.icon}`}/>
                   <span className='ProductDetail-bottom-word'>{v.discountInfo}</span>
-                    <span className='ProductDetail-btn'>购买</span>
+                    <span className='ProductDetail-btn' onClick={this.intoBuy}>买单</span>
             </div>)
     })
     return (
@@ -52,7 +69,9 @@ export default class ListItem extends React.Component {
                     <span >{this.state.data==null?'':this.state.data.locationGuidance}</span>
                     <img className='ProductDetail-icon' src={require('../../images/next.png')}/>
                 </div>
-                {spanItem}
+                <span style={{display:this.state.data==null?"":this.state.data.discountList.length == 0 ? 'none':'block'}}>
+                    {spanItem}
+                </span>
             </div>
             <div className='ProductDetail-detail'>
                 <span className='detail-title'>
@@ -60,6 +79,20 @@ export default class ListItem extends React.Component {
                 </span>
                 <div dangerouslySetInnerHTML={this.createMarkup()} className='detail-html' />
             </div>
+            <div className='ProductDetail-comment'>
+                <div className='ProductDetail-comment-top'>
+                    <img src={require('../../images/comment_icon.png')} className='comment-icon'/>
+                    <span className='user-comment'>用户评论<span>({this.state.ListLength})</span></span>
+                    <img src={require('../../images/enter_l.png')} className='comment-enter'/>
+                    <span className='look-comment'>查看全部评论</span>
+                </div>
+                <ProductComment data={this.state.comment}/>
+            </div>
+            <div className='ProductDetail-addComent'>
+                    <img src={require('../../images/b_comment_icon.png')}/>
+                    <span>添加评论</span>
+            </div>
+
         </div>
     );
   }

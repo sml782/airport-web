@@ -4,21 +4,38 @@
   <meta charset="utf-8">
   <title></title>
   <!-- 禁止缩放 -->
-  <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+  <meta name="viewport" content="target-densitydpi=320,width=640,user-scalable=no">
   <!-- 高清方案脚本 -->
   <script src="https://os.alipayobjects.com/rmsportal/lvEQQbNgHsIxVfXLkmuX.js"></script>
-
-  <!-- <link rel="stylesheet" href="./dist/src/lib/iconpicker/icon-fonts/font-awesome-4.2.0/css/font-awesome.min.css"/> -->
-  <!-- <script type="text/javascript" src="./src/lib/js/jquery-1.10.2.min.js"></script> -->
   <script>
     if(!window.Promise) {
       document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
     }
   </script>
+  <link rel="stylesheet" href="/dist/index.css">
+  <script>
+   (function(a,h,c,b,f,g){a["UdeskApiObject"]=f;a[f]=a[f]||function(){(a[f].d=a[f].d||[]).push(arguments)};g=h.createElement(c);g.async=1;g.charset="utf-8";g.src=b;c=h.getElementsByTagName(c)[0];c.parentNode.insertBefore(g,c)})(window,document,"script","//assets-cli.udesk.cn/im_client/js/udeskApi.js","ud");
+    ud({
+        "code": "1b4i9445",
+        "link": "//dragonpass.udesk.cn/im_client?web_plugin_id=23714",
+        "mode": "inner",
+        "onlineText": "联系客服，在线咨询",
+        "offlineText": "客服下班，请留言",
+        "targetSelector": "#customerService",
+        "panel": {
+            "css": {
+                "top": "0",
+                "left": "0"
+            }
+        }
+    });
+</script>
 </head>
 <body>
   <div id="example" />
   <script src="https://as.alipayobjects.com/g/component/??react/15.3.2/react.min.js,react/15.3.2/react-dom.min.js"></script>
+  <script src="/dist/shared.js"></script>
+  <script src="/dist/index.js"></script>
   <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
   <script>
   if ('addEventListener' in document) {
@@ -26,7 +43,6 @@
       FastClick.attach(document.body);
     }, false);
   }
-
   var b = 100/750,f = 0;
   window.addEventListener('resize',function(){
     var w = document.body.clientWidth;

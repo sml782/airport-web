@@ -3,9 +3,6 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const pxtorem = require('postcss-pxtorem');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 const Visualizer = require('webpack-visualizer-plugin'); // remove it in production environment.
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // remove it in production environment.
@@ -21,17 +18,16 @@ const otherPlugins = process.argv[1].indexOf('webpack-dev-server') >= 0 ? [] : [
 module.exports = {
   devtool: 'source-map', // or 'inline-source-map'
   devServer: {
-    disableHostCheck: true,
-    contentBase: './dist'
+    disableHostCheck: true
   },
 
   entry: { "index": path.resolve(__dirname, 'src/index') },
 
   output: {
     filename: '[name].js',
-    chunkFilename:  '[id].chunk.js',
+    chunkFilename: '[id].chunk.js',
     path: path.join(__dirname, '/dist'),
-    publicPath: './'
+    publicPath: '/dist/'
   },
 
   resolve: {
@@ -81,16 +77,6 @@ module.exports = {
       name: 'shared',
       filename: 'shared.js'
     }),
-    new HtmlWebpackPlugin({
-        filename: __dirname + '/dist/index.html',//输出文件位置
-        template: __dirname + '/public/index.ejs', // html模板路径,模板路径是支持传参调用loader的,
-        inject: true, //允许插件修改哪些内容，true/'head'/'body'/false,
-        //hash: true
-    }),
-    // new CopyWebpackPlugin([{
-    //     from: __dirname + '/public/lib',
-    //     to: __dirname + '/dist/src/lib'
-    // }]),
     new ExtractTextPlugin('[name].css', { allChunks: true }),
     ...otherPlugins
   ]

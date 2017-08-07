@@ -1,0 +1,190 @@
+//预约
+.parking-info{
+    width: 100%;
+    height: auto;
+    margin-bottom: .16rem;
+    background: #fff;
+    border-top: 1px solid #dedede;
+    .info-title{
+        width:100%;
+        height: 1.28rem;
+        padding: .5rem .32rem;
+        font-size: .3rem;
+        line-height: .3rem;
+        border-bottom: 1px solid #dedede;
+        .info-name{
+            display: inline-block;
+            border-left:.06rem solid #00aca0;
+            text-indent: .2rem;
+        }
+    }
+    .am-list .am-list-item{
+        .am-list-line{
+            .am-list-content{
+                font-size: .26rem;
+            }
+            .am-list-extra{
+                font-size: .26rem;
+            }
+        }
+        .am-input-label{
+            font-size: .26rem;
+        }
+        .am-input-control{
+            font-size: .26rem;
+        }
+    }
+}
+
+.remark-info{
+    margin-bottom: 0;
+    padding-bottom: .5rem;
+    .am-textarea-control{
+        margin: .4rem 0;
+        border: 1px solid #dedede;
+    }
+    .am-textarea-count{
+        right: .35rem;
+        bottom: .05rem;
+    }
+    .parking-info-btn{
+        margin: .5rem .65rem 0;
+        background-color: #00aca0;
+    }
+}
+
+//订单详情
+.subscribe-info{
+    width: 100%;
+    height:  3rem;
+    padding-top: .4rem;
+    text-align: center;
+    background: linear-gradient(to right bottom,#41cc71,#2aa54a);
+    color: #fff;
+    .subscribe-ok{
+        font-size: .4rem; 
+        font-weight: 500;
+        line-height: 1.44rem;
+        margin: 0;
+    }
+    .subscribe-tip{
+        margin: 0;
+        font-size: .22rem;
+    }
+    .am-list-item .am-list-line .am-list-extra{
+        flex-basis: 60%;
+    }
+}
+
+.content{
+    .sub-segment{
+        border-radius: 0;
+        .am-segment-item{
+            &:first-child{
+                border-radius: 0;
+            }
+            &:last-child{
+                border-radius: 0;
+            }
+        }
+    }
+}
+
+.subscribe-order{
+    margin-bottom: .3rem;
+    .pay-status{
+        min-height: 0;
+        height: 0;
+        display: none;
+    }
+    .am-list-item{
+        .am-list-line{
+            .am-list-content{
+                font-size: .26rem;
+                .subscribe-status{
+                    float: right;
+                }
+            }
+            .am-list-extra{
+                font-size: .26rem;
+                .subscribe-detail{
+                    float: left;
+                    display: inline-block;
+                    svg{
+                        float: right;
+                    }
+                }
+            }
+        }
+        .am-input-label{
+            font-size: .26rem;
+        }
+        .am-input-control{
+            font-size: .26rem;
+        }
+    }
+    
+}
+.subscribe-btn{
+    padding: 0 .35rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@keyframes payDetail {
+    from {
+        min-height: 0;
+        height: 0;
+    }
+    to {
+        min-height: .88rem;
+        height: .88rem;
+    }
+}
+
+.pay-status-ani{
+    animation-name: payDetail;
+}
+
+@keyframes svgAni {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+.svg-ani {
+    animation-name: svgAni;
+    animation-duration: 0.5s;
+}
+
+//反向动画
+@keyframes payDetailReverse {
+    from {
+        min-height: .88rem;
+        height: .88rem;
+    }
+    to {
+        min-height: 0;
+        height: 0;
+    }
+}
+.pay-status-reverse-ani{
+    animation-name: payDetailReverse;
+}
+
+@keyframes svgAniReverse {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.svg-reverse-ani {
+    animation-name: svgAniReverse;
+    animation-duration: 0.5s;
+}

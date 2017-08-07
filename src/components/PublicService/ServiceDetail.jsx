@@ -2,7 +2,7 @@ import './publicService.less';
 import React, { Component } from 'react';
 import $ from 'jquery';
 import { hashHistory } from 'react-router';
-import { SearchBar, Tabs, Steps, List, Modal, Toast, Grid } from 'antd-mobile';
+import { SearchBar, Tabs, Steps, List, Modal, Toast, Grid, Icon } from 'antd-mobile';
 import { Fetcher } from '../../utils/fetch';
 import { serverUrl2 } from '../../utils/utils';
 
@@ -16,13 +16,12 @@ const service = (data) =>  (
           multipleLine
         >
             <div className='point-content'>
-                <span>{data.servicePointName}</span>
-                <span><Icon type="right" />服务位置:<Brief>{data.position}</Brief></span>
-                <span><Icon type="right" />电话:<Brief>{data.phone}</Brief></span>
-                <span><Icon type="right" />电话:<Brief>{data.phone}</Brief></span>
-                <span><Icon type="right" />营业时间:<Brief>{data.businessHours}</Brief></span>
-                {data.servicePointContent !== '' && <span><Icon type="right" />服务内容:<Brief>{data.businessHours}</Brief></span>}
-                {data.link !== '' && <span><Icon type="right" />链接:<a href={data.businessHours}><Brief>{data.businessHours}</Brief></a></span>}
+                <p>{data.servicePointName}</p>
+                <span><Icon type="right" /><i>{'服务位置:'}</i><Brief>{data.position}</Brief></span>
+                <span><Icon type="right" /><i>{'电话:'}</i><Brief>{data.phone}</Brief></span>
+                <span><Icon type="right" /><i>{'营业时间:'}</i><Brief>{data.businessHours}</Brief></span>
+                {data.servicePointContent !== '' && <span><Icon type="right" /><i>{'服务内容:'}</i><Brief>{data.servicePointContent}</Brief></span>}
+                {data.link !== '' && <span><Icon type="right" /><i>{'链接:'}</i><a href={data.link}><Brief>{data.link}</Brief></a></span>}
                 {data.pictureUrl !== '' && <span className='point-img-list'>{data.pictureUrl.split(';').map((v,i)=>{
                     return <img src={v} />
                 })}</span> }
@@ -42,7 +41,6 @@ class ServiceDetail extends Component {
         this.props.changeTitle(this.props.params.serviceName)
         const {id,isParent} = this.props.params;
         this.getService(id, isParent);
-        console.log(1)
     }
     
     getService (id, isParent) {
@@ -63,9 +61,8 @@ class ServiceDetail extends Component {
 
     render() {
         const { serviceDetail } = this.state;
-        console.log(serviceDetail)
         let serviceItem = null;
-        if(serviceDetail.hasServicePoint){
+        if(serviceDetail && serviceDetail.servicePointList && serviceDetail.servicePointList.length){
             serviceItem = serviceDetail.servicePointList.map((v,i)=>{
                 return service(v)
             })
@@ -74,7 +71,7 @@ class ServiceDetail extends Component {
             <div className='content'>
                 <div dangerouslySetInnerHTML={this.createMarkup()} className='detail-body' />
                 <List renderHeader={() => <span className='point-title'>服务点</span>} className="service-list">
-                    {serviceItem}
+                    {serviceDetail && serviceDetail.hasServicePoint && serviceItem}
                 </List>
             </div>
         )

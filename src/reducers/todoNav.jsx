@@ -1,21 +1,34 @@
-import { CHANGE_NAVLEFT, CHANGE_NAVRIGHT } from '../constants/NavbarTypes'
+import { CHANGE_NAVTITLE, CHANGE_NAVLEFT, CHANGE_NAVRIGHT, CHANGE_NAV } from '../constants/NavbarTypes'
 
 const initState = { 
-    leftText: 'app', 
-    rightText: 'app',
+    title:'app',
+    left:{
+        text:'←',
+        func:undefined
+    },
+    right:{
+        text:'...',
+        func:undefined
+    }
 }
-
 const todoNav = (state = initState, action) => {
     switch (action.type) {
-        case CHANGE_NAVLEFT:
-            return {
-                leftText: action.leftText
+        case CHANGE_NAV:
+            if(action.title){
+                state.title = action.title;
             }
-        case CHANGE_NAVRIGHT:
-            return {
-                leftText: action.rightText
+            if(action.left){
+                state.left.text = action.left.text;
+                state.left.func = action.left.func;
             }
+            if(action.right){
+                state.right.text = action.right.text;
+                state.right.func = action.right.func;
+            }
+            return state
+        default :
+            return state
     }
 }
 
-export default todoNav
+export default todoNav;

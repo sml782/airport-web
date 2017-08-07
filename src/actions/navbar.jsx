@@ -1,10 +1,18 @@
 import * as typesNav from '../constants/NavbarTypes'
-export const changeLeft = (text) => ({
-  type: typesNav.CHANGE_NAVLEFT,
-  leftText:text
-})
 
-export const changeRight = (text) => ({
-  type: typesNav.CHANGE_NAVRIGHT,
-  right:text
+export const changeNav = (title,left,right) => ({
+  type: typesNav.CHANGE_NAV,
+  title,
+  left,
+  right
 })
+// export const changeLeft = (text,func) => ({
+//   type: typesNav.CHANGE_NAVLEFT,
+//   text,
+//   func: func ? func : undefined
+// })
+// export const changeRight = (text,func) => ({
+//   type: typesNav.CHANGE_NAVRIGHT,
+//   text,
+//   func
+// })

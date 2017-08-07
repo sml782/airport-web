@@ -18,8 +18,8 @@ class SearchFlight extends React.Component {
     
   }
   componentDidMount() {
-    this.props.changeTitle('航班查询');
-    this.props.changeRight('首页',()=>hashHistory.push('/index'));
+    this.props.changeTitle('航班结果');
+    this.props.changeRight('完成');
   }
 
   //焦点获得
@@ -29,11 +29,10 @@ class SearchFlight extends React.Component {
 
   //提交
   submit=()=>{
-      hashHistory.push('/flightResult');
-    //   console.log(this.props.form.getFieldsValue('flightLand'));
-    //   this.props.form.validateFields((error,value)=>{
-    //       console.log(value);
-    //   })
+      console.log(this.props.form.getFieldsValue('flightLand'));
+      this.props.form.validateFields((error,value)=>{
+          console.log(value);
+      })
   }
   
 

@@ -6,20 +6,15 @@ import {
 } from 'antd-mobile';
 import {Fetcher} from '../../../utils/fetch'
 import {serverUrl,serverUrl1,imgUrl} from '../../../utils/utils'
-import ProductList from '../../Public/ProductList'
+import LoungeList from '../../Public/LoungeList'
 
 const {get, post} = Fetcher
 const TabPane = Tabs.TabPane;
 const Item = List.Item;
 const Brief = Item.Brief;
 const iconList = [
-  { title: '餐厅' },
-  { title: '咖啡馆' },
-  { title: '快餐' },
-  { title: '小吃吧' },
-  { title: '面包店' },
-  { title: '甜品吧' },
 ];
+
 
 export default class MyBalanceDemo extends React.Component {
   constructor(props) {
@@ -38,7 +33,7 @@ export default class MyBalanceDemo extends React.Component {
     }
   componentDidMount() {
     const _this = this;
-    this.props.changeTitle('逛机场');
+    this.props.changeTitle('休息室');
     this.getList()
     this.setState({
       float:!_this.state.float
@@ -63,7 +58,6 @@ export default class MyBalanceDemo extends React.Component {
           let data = {
             shopType:buttonIndex+1
           }
-          _this.getAnyList(data)
           setTimeout(resolve, 1000);
       });
     });
@@ -81,8 +75,9 @@ export default class MyBalanceDemo extends React.Component {
   }
   getList=()=>{
     const _this = this
-    get(serverUrl1+'airport-product/getFlashForWeChat',{airportCode:'PVG'}).then(
+    get(serverUrl1+'airport-product/getLoungeListForWeChat',{airportCode:'HGH'}).then(
         result => {
+            console.log(result)
             _this.setState({
                 list:result.data.rows,
                 float:!_this.state.float
@@ -224,7 +219,7 @@ export default class MyBalanceDemo extends React.Component {
   
   render() {
     const listItem = this.state.list==null?'':this.state.list.map((v,index)=>{
-        return <ProductList data={v} key={index}></ProductList>
+        return <LoungeList data={v} key={index}></LoungeList>
     })
     
     return (<div  style={{ marginBottom: 30,width:'100%' }}>

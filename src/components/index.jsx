@@ -1,6 +1,6 @@
 import 'animate.css'
 import './index.less';
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute, Link } from 'react-router';
 import $ from 'jquery'
@@ -8,48 +8,48 @@ import { Button, WhiteSpace, Popover, Icon, Grid } from 'antd-mobile';
 import { Fetcher } from '../utils/fetch';
 
 const { get, post } = Fetcher;
-
 let delFlag = 0;
 
-const menu = [];
-    menu.push({
+const menu = [
+    {
         icon:require('../images/icon_index_menu04.png'),
         name:'在线值机',
         bgColor:'#788BC5',
         link:''
-    })
-    menu.push({
+    },
+    {
         icon:require('../images/icon_index_menu07.png'),
         name:'地图导航',
         bgColor:'#84C478',
-        link:''
-    })
-    menu.push({
+        link:'地图导航'
+    },
+    {
         icon:require('../images/icon_index_menu03.png'),
         name:'预定中心',
         bgColor:'#DFB676',
-        link:''
-    })
-    menu.push({
+        link:'/reservationCenter'
+    },
+    {
         icon:require('../images/icon_index_menu08.png'),
         name:'服务大厅',
         bgColor:'#D3C378',
         link:'/publicService'
-    })
-    menu.push({
+    },
+    {
         icon:require('../images/icon_index_menu09.png'),
         name:'交通指南',
         bgColor:'#6FB1BF',
         link:''
-    })
-    menu.push({
+    },
+    {
         icon:require('../images/icon_index_menu10.png'),
         name:'航会玩',
         bgColor:'#C79688',
         link:'/sailingPlay'
-    })
+    }
+];
 
-export default class Index extends React.Component {
+class Index extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -61,9 +61,9 @@ export default class Index extends React.Component {
         this.getWeather = this.getWeather.bind(this);
         this.handleVisibleChange = this.handleVisibleChange.bind(this);
     }
-    componentDidMount = ()=>{
-        //$('.am-navbar').hide()
-        //$('.index-bg').parent().parent().parent().parent().find('.am-navbar').hide()
+    componentDidMount () {
+        // const { changeRoute, location, params } = this.props;
+        // changeRoute(location.pathname, params && params)
         $('.index-bg').parent().parent().parent().parent().find('.am-navbar').hide()
         const { hasAirport } = this.state;
         if(hasAirport){
@@ -77,8 +77,8 @@ export default class Index extends React.Component {
             $('.menu-list').removeClass('menu-list-hasAir');
             $('.index-menu').removeClass('index-menu-hasAir');
         }
-        document.addEventListener('click',()=>{
-            if(delFlag){
+        document.addEventListener('click',(e)=>{
+            if(delFlag && e.target !== $('.del-b.del-airline')[0] && e.target !== $('.del-b.cancle-airline')[0] && e.target !== $('.del-prop')[0]){
                 $('.del-prop').animate({
                     width: 0,
                     height: 0,
@@ -88,7 +88,7 @@ export default class Index extends React.Component {
                     delFlag = 0;
                 })
             }
-        })
+        },false)
         this.getWeather();
         this.startAnimate();
     }
@@ -207,7 +207,6 @@ export default class Index extends React.Component {
         // })
         const weather = $('.index-weather');
         get('https://weixin.jirengu.com/weather').then(data => {
-            console.log(data)
             weather.find('.index-weather-icon').attr({ src: `//weixin.jirengu.com/images/weather/code/${data.weather[0].now.code}.png` });
             weather.find('.index-weather-con').html(`${data.weather[0].future[0].low}/${data.weather[0].future[0].high} ℃ ${data.weather[0].future[0].text.split('/')[0]}`);
         })
@@ -241,7 +240,16 @@ export default class Index extends React.Component {
         hashHistory.push('/personalSettings')
     }
     goMenu = ({link}) => {
+        if(link == '地图导航'){
+            window.location.href = 'http://maps.rtmap.com/airport/?key=K7I23869HD&buildid=863200010050100001&labelstyle=circle-point&openid=oikd5jgARPHHtakvE-ZhLXe5NDHA';
+            return false
+        }
         hashHistory.push(link)
+    }
+
+    //航班查询
+    addFlight=()=>{
+        hashHistory.push(`/searchFlight`);
     }
     render() {
         return (
@@ -267,7 +275,7 @@ export default class Index extends React.Component {
                             <img className='animated infinite arrow-ani arrow-ani-3' src={require('../images/index-top-arr.png')} />
                         </div>
                         <div className='add-airport'>
-                            <Button className="btn index-add-button" type="primary">添加航班</Button>
+                            <Button className="btn index-add-button" type="primary" onClick={this.addFlight}>添加航班</Button>
                             <div className='airport-line'>
                                 <span className='alrline-delete-btn'>
                                     <Icon type='cross' size='lg' color='#666' onClick={this.handleVisibleChange} />
@@ -329,10 +337,10 @@ export default class Index extends React.Component {
                     />
                     <div className='more-menu'>
                         <a href='javascript:;' className='menu-btn airport-search'>
-                            <span>航班查询</span>
+                            <span onClick={this.addFlight}>航班查询</span>
                         </a>
-                        <a href='javascript:;' className='menu-btn airport-service'>
-                            <span>智能查询</span>
+                        <a href='javascript:;' id='customerService' className='menu-btn airport-service'>
+                            <span>智能客服</span>
                             <img src={require('../images/icon_index_menu11.png')} />
                         </a>
                     </div>
@@ -341,4 +349,6 @@ export default class Index extends React.Component {
         );
     }
 }
-//'../images/icon-flight-detail-menu04.png'
+
+export default Index
+
