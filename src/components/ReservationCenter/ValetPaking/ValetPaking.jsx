@@ -21,10 +21,13 @@ class ValetPaking extends Component {
         }
     }
     componentDidMount() {
-        this.props.changeNav('代客泊车');
+        console.log(this.props)
+        //this.props.changeTitle('代客泊车');
         // this.props.changeRight('服务流程')
     }
-    
+    componentWillReceiveProps(nextProps) {
+        this.props.changeTitle('代客泊车');
+    }
     changeParkPoint (e) {
         e.preventDefault();
         const selectBtn = $('.valet-park-btn').find('.airport-btn-select').text();

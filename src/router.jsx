@@ -43,20 +43,15 @@ import ValetParking from './components/ReservationCenter/ValetPaking/ValetPaking
 import Valet from './components/ReservationCenter/ValetPaking/Parking/Valet';//预约泊车
 import Subscribe from './components/ReservationCenter/ValetPaking/Parking/Subscribe';//预约成功
 
-const store = createStore(
-  combineReducers({
-    ...reducer,
-    routing: routerReducer
-  })
-)
+const store = createStore(reducer)
 if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./reducers', () => {
-      const nextReducer = require('./reducers')
+    module.hot.accept('./reducers/index', () => {
+      const nextReducer = require('./reducers/index')
       store.replaceReducer(nextReducer)
     })
   }
-const history = syncHistoryWithStore( hashHistory, store )
+//const history = syncHistoryWithStore( hashHistory, store )
 
 //history.listen(location => analyticsService.track(location.pathname))
 

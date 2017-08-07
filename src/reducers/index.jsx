@@ -4,15 +4,11 @@ import visibilityFilter from './visibilityFilter'
 import todoNav from './todoNav'
 import todoRoute from './todoRoute'
 
-// const todoApp = combineReducers({
-//   todos,
-//   visibilityFilter,
-//   todoNav,
-//   // todoRoute
-// })
-
-export default {
+const todoApp = combineReducers({
   todos,
   visibilityFilter,
-  todoNav
-}
+  todoNav,
+  // todoRoute
+})
+
+export default todoApp

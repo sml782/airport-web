@@ -13,18 +13,16 @@ const initState = {
 }
 const todoNav = (state = initState, action) => {
     switch (action.type) {
-        case CHANGE_NAV:
-            if(action.title){
-                state.title = action.title;
-            }
-            if(action.left){
-                state.left.text = action.left.text;
-                state.left.func = action.left.func;
-            }
-            if(action.right){
-                state.right.text = action.right.text;
-                state.right.func = action.right.func;
-            }
+        case CHANGE_NAVTITLE:
+            state.title = action.title;
+            return state
+        case CHANGE_NAVLEFT:
+            state.left.text = action.left.text;
+            state.left.func = action.left.func;
+            return state
+        case CHANGE_NAVRIGHT:
+            state.right.text = action.right.text;
+            state.right.func = action.right.func;
             return state
         default :
             return state

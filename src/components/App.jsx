@@ -26,7 +26,7 @@ class App extends React.Component {
 				<div style={{ position: 'relative', height: '100%' }}>
 					<Drawer>
 						{this.props && this.props.children && React.cloneElement(this.props.children, {
-							changeNav: this.props.actions.changeNav,
+							changeTilte: this.props.actions.changeTilte,
 							//changeRoute: this.props.actions.changeRoute
 						}) || 'no content'}
 					</Drawer>
@@ -37,14 +37,13 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state, ownProp) => {
-	console.log(state)
-	return state.todoNav      
-    // return {
-	// 	title: state.todoNav.title,
-	// 	left: state.todoNav.left,
-	// 	right: state.todoNav.right,
-	// 	//routeAction: {...state.todoRoute}
-    // }
+	console.log(state)     
+    return {
+		title: state.todoNav.title,
+		left: state.todoNav.left,
+		right: state.todoNav.right,
+		//routeAction: {...state.todoRoute}
+    }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -57,4 +56,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(App)
-// export default App
